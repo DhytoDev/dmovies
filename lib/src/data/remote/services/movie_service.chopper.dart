@@ -48,4 +48,15 @@ final class _$MovieService extends MovieService {
     );
     return client.send<MovieDto, MovieDto>($request);
   }
+
+  @override
+  Future<Response<VideoListDto>> fetchMovieVideos(int id) {
+    final Uri $url = Uri.parse('/movie/${id}/videos');
+    final Request $request = Request(
+      'GET',
+      $url,
+      client.baseUrl,
+    );
+    return client.send<VideoListDto, VideoListDto>($request);
+  }
 }

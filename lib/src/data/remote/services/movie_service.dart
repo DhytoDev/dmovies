@@ -3,6 +3,7 @@ import 'package:injectable/injectable.dart';
 
 import '../response/movie_dto.dart';
 import '../response/movie_list_dto.dart';
+import '../response/video_dto.dart';
 part 'movie_service.chopper.dart';
 
 @lazySingleton
@@ -21,4 +22,7 @@ abstract class MovieService extends ChopperService {
 
   @Get(path: '/movie/{id}')
   Future<Response<MovieDto>> fetchMovieDetails(@Path() int id);
+
+  @Get(path: '/movie/{id}/videos')
+  Future<Response<VideoListDto>> fetchMovieVideos(@Path() int id);
 }
