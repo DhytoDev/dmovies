@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
-import 'package:dmovies/src/data/response/genre_list_dto.dart';
 
 import '../../core/exceptions.dart';
+import '../../data/remote/response/genre_list_dto.dart';
 import '../model/genre.dart';
 
 abstract class IGenreRepository {

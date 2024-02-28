@@ -1,6 +1,7 @@
 import 'package:chopper/chopper.dart';
-import 'package:dmovies/src/data/response/genre_list_dto.dart';
 import 'package:injectable/injectable.dart';
+
+import '../response/genre_list_dto.dart';
 
 part 'genre_service.chopper.dart';
 

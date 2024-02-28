@@ -1,10 +1,11 @@
-import 'package:dmovies/src/data/response/genre_list_dto.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-part 'movie_detail_dto.g.dart';
+import 'genre_list_dto.dart';
+
+part 'movie_dto.g.dart';
 
 @JsonSerializable()
-class MovieDetailDto {
+class MovieDto {
   @JsonKey(name: "adult")
   final bool? adult;
   @JsonKey(name: "backdrop_path")
@@ -56,7 +57,7 @@ class MovieDetailDto {
   @JsonKey(name: "vote_count")
   final int? voteCount;
 
-  MovieDetailDto ({
+  MovieDto({
     this.adult,
     this.backdropPath,
     this.belongsToCollection,
@@ -84,12 +85,12 @@ class MovieDetailDto {
     this.voteCount,
   });
 
-  factory MovieDetailDto.fromJson(Map<String, dynamic> json) {
-    return _$MovieDetailDtoFromJson(json);
+  factory MovieDto.fromJson(Map<String, dynamic> json) {
+    return _$MovieDtoFromJson(json);
   }
 
   Map<String, dynamic> toJson() {
-    return _$MovieDetailDtoToJson(this);
+    return _$MovieDtoToJson(this);
   }
 }
 
@@ -104,7 +105,7 @@ class BelongsToCollection {
   @JsonKey(name: "backdrop_path")
   final String? backdropPath;
 
-  BelongsToCollection ({
+  BelongsToCollection({
     this.id,
     this.name,
     this.posterPath,
@@ -131,7 +132,7 @@ class ProductionCompanies {
   @JsonKey(name: "origin_country")
   final String? originCountry;
 
-  ProductionCompanies ({
+  ProductionCompanies({
     this.id,
     this.logoPath,
     this.name,
@@ -154,7 +155,7 @@ class ProductionCountries {
   @JsonKey(name: "name")
   final String? name;
 
-  ProductionCountries ({
+  ProductionCountries({
     this.iso31661,
     this.name,
   });
@@ -177,7 +178,7 @@ class SpokenLanguages {
   @JsonKey(name: "name")
   final String? name;
 
-  SpokenLanguages ({
+  SpokenLanguages({
     this.englishName,
     this.iso6391,
     this.name,
@@ -191,5 +192,3 @@ class SpokenLanguages {
     return _$SpokenLanguagesToJson(this);
   }
 }
-
-

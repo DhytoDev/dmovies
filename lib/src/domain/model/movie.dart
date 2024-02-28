@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 
+import '../../data/remote/response/movie_dto.dart';
 import 'genre.dart';
 
 class Movie extends Equatable {
