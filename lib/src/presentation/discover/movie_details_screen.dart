@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:dmovies/src/presentation/route/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../core/ui_state.dart';
 import '../../di/injection.dart';
@@ -177,7 +178,14 @@ class VideoListView extends StatelessWidget {
                     child: Material(
                       elevation: 5.0,
                       child: InkWell(
-                        onTap: () {},
+                        onTap: () async {
+                          final uri = Uri.parse(
+                              'https://www.youtube.com/watch?v=${e.key}');
+
+                          if (!await launchUrl(uri)) {
+                            throw Exception('Could not launch $uri');
+                          }
+                        },
                         child: Stack(
                           alignment: Alignment.center,
                           children: <Widget>[
