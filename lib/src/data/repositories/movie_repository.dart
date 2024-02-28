@@ -1,11 +1,10 @@
 import 'package:dartz/dartz.dart';
-import 'package:dmovies/src/core/exceptions.dart';
-import 'package:dmovies/src/data/response/movie_list_dto.dart';
-import 'package:dmovies/src/domain/model/movie.dart';
-import 'package:dmovies/src/domain/model/movie_list.dart';
-import 'package:dmovies/src/domain/repositories/movie_repository.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../core/exceptions.dart';
+import '../../domain/model/movie.dart';
+import '../../domain/model/movie_list.dart';
+import '../../domain/repositories/movie_repository.dart';
 import '../remote/services/movie_service.dart';
 
 @LazySingleton(as: IMovieRepository)
@@ -27,15 +26,16 @@ final class MovieRepository extends IMovieRepository {
     if (response.isSuccessful) {
       final movieListResponse = response.body;
 
-      final movieList =
-          movieListResponse?.results?.map((e) => mapToMovie(e)).toList() ??
-              List.empty();
+      MovieList movieList = MovieList(
+        page: movieListResponse?.page ?? 0,
+        totalPages: movieListResponse?.totalPages ?? 0,
+      );
+
+      final movies = movieListResponse?.results ?? List.empty();
 
       return right(
-        MovieList(
-          page: movieListResponse?.page ?? 0,
-          movies: movieList,
-          totalPages: movieListResponse?.totalPages ?? 0,
+        movieList.copyWith(
+          movies: movies.map((e) => mapToMovie(e)).toList(),
         ),
       );
     }
@@ -44,7 +44,14 @@ final class MovieRepository extends IMovieRepository {
   }
 
   @override
-  Future<Either<NetworkException, Movie>> getMovieDetails(int movieId) {
-    throw UnimplementedError();
+  Future<Either<NetworkException, Movie>> getMovieDetails(int movieId) async {
+    final response = await _movieService.fetchMovieDetails(movieId);
+
+    if (response.isSuccessful) {
+      return right(mapToMovie(response.bodyOrThrow));
+    }
+
+    return left(NetworkException(status: response.statusCode));
+  }
   }
 }
