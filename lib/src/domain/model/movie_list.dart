@@ -1,25 +1,18 @@
-import 'package:equatable/equatable.dart';
+import 'package:dmovies/src/domain/model/paging_model.dart';
 
 import 'movie.dart';
 
-class MovieList extends Equatable {
-  final int page;
-  final List<Movie> movies;
-  final int totalPages;
-
+class MovieList extends PagingModel<Movie> {
   const MovieList({
-    this.page= 0,
-    this.movies = const [],
-    this.totalPages = 0,
+    super.page,
+    super.totalPages,
+    super.data,
   });
-
-  @override
-  List<Object?> get props => [page, movies];
 
   MovieList copyWith({List<Movie>? movies}) {
     return MovieList(
       page: page,
-      movies: movies ?? this.movies,
+      data: movies ?? data,
     );
   }
 }
