@@ -59,4 +59,20 @@ final class _$MovieService extends MovieService {
     );
     return client.send<VideoListDto, VideoListDto>($request);
   }
+
+  @override
+  Future<Response<ReviewListDto>> fetchMovieReviews(
+    int id,
+    int page,
+  ) {
+    final Uri $url = Uri.parse('/movie/${id}/reviews');
+    final Map<String, dynamic> $params = <String, dynamic>{'page': page};
+    final Request $request = Request(
+      'GET',
+      $url,
+      client.baseUrl,
+      parameters: $params,
+    );
+    return client.send<ReviewListDto, ReviewListDto>($request);
+  }
 }
