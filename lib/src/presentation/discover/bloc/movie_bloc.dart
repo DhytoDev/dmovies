@@ -37,7 +37,7 @@ class MovieBloc extends Bloc<MovieEvent, MovieListState> {
           state.copyWith(
             page: r.page,
             totalPages: r.totalPages,
-            movies: List.of(state.movies)..addAll(r.movies),
+            movies: List.of(state.movies)..addAll(r.data),
           ),
         );
       },

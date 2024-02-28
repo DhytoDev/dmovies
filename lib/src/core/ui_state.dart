@@ -1,19 +1,20 @@
-sealed class UiState<T> {}
+sealed class UiState<T> {
+  final T? data;
+
+  UiState([this.data]);
+
+}
 
 class InitialState<T> extends UiState<T> {}
 
 class LoadingState<T> extends UiState<T> {}
 
 class SuccessState<T> extends UiState<T> {
-  final T data;
-
-  SuccessState(this.data);
-
-  SuccessState copyWith({T? data}) => SuccessState(data ?? this.data);
+  SuccessState(T super.data);
 }
 
-class ErrorState<T> implements UiState<T> {
+class ErrorState<T> extends UiState<T> {
   final String? message;
 
-  ErrorState(this.message);
+  ErrorState(this.message, [super.data]);
 }
