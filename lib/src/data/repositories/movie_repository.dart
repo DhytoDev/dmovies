@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:dmovies/src/domain/model/video.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../core/exceptions.dart';
@@ -53,5 +54,18 @@ final class MovieRepository extends IMovieRepository {
 
     return left(NetworkException(status: response.statusCode));
   }
+
+  @override
+  Future<Either<NetworkException, List<Video>>> getMovieVideos(
+      int movieId) async {
+    final response = await _movieService.fetchMovieVideos(movieId);
+
+    if (response.isSuccessful) {
+      final videos = response.bodyOrThrow.results ?? List.empty();
+
+      return right(videos.map((e) => mapToVideo(e)).toList());
+    }
+
+    return left(NetworkException(status: response.statusCode));
   }
 }
