@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:dmovies/src/domain/model/review.dart';
 import 'package:dmovies/src/domain/model/video.dart';
 import 'package:injectable/injectable.dart';
 
@@ -64,6 +65,25 @@ final class MovieRepository extends IMovieRepository {
       final videos = response.bodyOrThrow.results ?? List.empty();
 
       return right(videos.map((e) => mapToVideo(e)).toList());
+    }
+
+    return left(NetworkException(status: response.statusCode));
+  }
+
+  @override
+  Future<Either<NetworkException, ReviewList>> getMovieReviews(int movieId,
+      {int page = 1}) async {
+    final response = await _movieService.fetchMovieReviews(movieId, page);
+
+    if (response.isSuccessful) {
+      ReviewList reviewList = ReviewList(page: response.bodyOrThrow.page ?? 0);
+
+      final reviews = response.bodyOrThrow.results ?? List.empty();
+
+      return right(
+        reviewList.copyWith(
+            reviews: reviews.map((e) => mapToReview(e)).toList()),
+      );
     }
 
     return left(NetworkException(status: response.statusCode));

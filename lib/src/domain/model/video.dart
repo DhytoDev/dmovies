@@ -15,4 +15,6 @@ class Video extends Equatable {
 
   @override
   List<Object?> get props => [id, name, key, type];
+
+  String getImageVideoUrl() => 'https://i1.ytimg.com/vi/$key/0.jpg';
 }

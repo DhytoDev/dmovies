@@ -1,7 +1,9 @@
 import 'dart:async';
 
 import 'package:dartz/dartz.dart';
+import 'package:dmovies/src/data/remote/response/review_list_dto.dart';
 import 'package:dmovies/src/data/remote/response/video_dto.dart';
+import 'package:dmovies/src/domain/model/review.dart';
 import 'package:dmovies/src/domain/model/video.dart';
 
 import '../../core/exceptions.dart';
@@ -19,11 +21,17 @@ abstract class IMovieRepository {
 
   Future<Either<NetworkException, List<Video>>> getMovieVideos(int movieId);
 
+  Future<Either<NetworkException, ReviewList>> getMovieReviews(int movieId,
+      {int page = 1});
+
+  static const backdropPathUrl = 'https://image.tmdb.org/t/p/w500';
+  static const posterPathUrl = 'https://image.tmdb.org/t/p/w200';
+
   Movie mapToMovie(MovieDto dto) => Movie(
         id: dto.id ?? 0,
         title: dto.title ?? '',
-        posterPath: dto.posterPath ?? '',
-        backdropPath: dto.backdropPath ?? '',
+        posterPath: '$posterPathUrl/${dto.posterPath}' ?? '',
+        backdropPath: '$backdropPathUrl/${dto.backdropPath}' ?? '',
         overview: dto.overview ?? '',
         popularity: dto.popularity ?? 0.0,
         voteAverage: dto.voteAverage ?? 0.0,
@@ -36,4 +44,10 @@ abstract class IMovieRepository {
         key: dto.key ?? '',
         type: dto.type ?? '',
       );
+
+  Review mapToReview(ReviewDto dto) => Review(
+    author: dto.author ?? '',
+    url: dto.url ?? '',
+    content: dto.content ?? '',
+  );
 }
