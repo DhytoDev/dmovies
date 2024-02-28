@@ -30,7 +30,7 @@ class GenreScreen extends StatelessWidget implements AutoRouteWrapper {
           ErrorState() => Text(state.message.toString()),
           SuccessState() => _GenreListView(
               key: const Key('GenreListView'),
-              genres: state.data,
+              genres: state.data!,
             )
         };
 
