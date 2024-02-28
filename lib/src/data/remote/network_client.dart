@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:chopper/chopper.dart';
+import 'package:dmovies/src/data/remote/response/review_list_dto.dart';
 import 'package:dmovies/src/data/remote/response/video_dto.dart';
 import 'package:http/io_client.dart' as http;
 
@@ -21,6 +22,7 @@ final class NetworkClient extends ChopperClient {
               GenreListDto: (json) => GenreListDto.fromJson(json),
               MovieDto: (json) => MovieDto.fromJson(json),
               VideoListDto: (json) => VideoListDto.fromJson(json),
+              ReviewListDto: (json) => ReviewListDto.fromJson(json),
             },
           ),
           interceptors: [
