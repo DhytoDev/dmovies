@@ -19,6 +19,7 @@ import '../data/repositories/movie_repository.dart' as _i10;
 import '../domain/repositories/genre_repository.dart' as _i5;
 import '../domain/repositories/movie_repository.dart' as _i9;
 import '../presentation/discover/bloc/movie_bloc.dart' as _i11;
+import '../presentation/discover/bloc/movie_details_bloc.dart' as _i12;
 import '../presentation/genre/bloc/genre_bloc.dart' as _i7;
 
 extension GetItInjectableX on _i1.GetIt {
@@ -44,6 +45,8 @@ extension GetItInjectableX on _i1.GetIt {
         () => _i10.MovieRepository(gh<_i8.MovieService>()));
     gh.factory<_i11.MovieBloc>(
         () => _i11.MovieBloc(gh<_i9.IMovieRepository>()));
+    gh.factory<_i12.MovieDetailsBloc>(
+        () => _i12.MovieDetailsBloc(gh<_i9.IMovieRepository>()));
     return this;
   }
 }
