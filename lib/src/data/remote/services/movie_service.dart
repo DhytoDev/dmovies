@@ -1,8 +1,8 @@
 import 'package:chopper/chopper.dart';
-import 'package:dmovies/src/data/response/genre_list_dto.dart';
-import 'package:dmovies/src/data/response/movie_list_dto.dart';
 import 'package:injectable/injectable.dart';
 
+import '../response/movie_dto.dart';
+import '../response/movie_list_dto.dart';
 part 'movie_service.chopper.dart';
 
 @lazySingleton
@@ -18,4 +18,7 @@ abstract class MovieService extends ChopperService {
     @Query('with_genres') String? genre,
     @Query('with_keywords') String? keywords,
   });
+
+  @Get(path: '/movie/{id}')
+  Future<Response<MovieDto>> fetchMovieDetails(@Path() int id);
 }
