@@ -3,7 +3,8 @@ import 'dart:io';
 import 'package:chopper/chopper.dart';
 import 'package:dmovies/src/data/remote/response/review_list_dto.dart';
 import 'package:dmovies/src/data/remote/response/video_dto.dart';
-import 'package:http/io_client.dart' as http;
+// import 'package:http/io_client.dart' as http;
+import 'package:http/http.dart' as http;
 
 import 'json_converter.dart';
 import 'response/genre_list_dto.dart';
@@ -11,7 +12,7 @@ import 'response/movie_dto.dart';
 import 'response/movie_list_dto.dart';
 
 final class NetworkClient extends ChopperClient {
-  final HttpClient _httpClient;
+  final http.BaseClient _httpClient;
 
   NetworkClient(this._httpClient)
       : super(
@@ -34,6 +35,6 @@ final class NetworkClient extends ChopperClient {
             },
             HttpLoggingInterceptor(),
           ],
-          client: http.IOClient(_httpClient),
+          client: _httpClient,
         );
 }
