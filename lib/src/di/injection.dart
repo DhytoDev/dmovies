@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:chopper/chopper.dart';
 import 'package:get_it/get_it.dart';
+import 'package:http/io_client.dart';
 import 'package:injectable/injectable.dart';
 
 import '../data/remote/network_client.dart';
@@ -20,5 +21,7 @@ Future<void> configureInjection() async {
   final httpClient = HttpClient()
     ..connectionTimeout = const Duration(seconds: 200);
 
-  getIt.registerLazySingleton<ChopperClient>(() => NetworkClient(httpClient));
+  getIt.registerLazySingleton<ChopperClient>(
+    () => NetworkClient(IOClient(httpClient)),
+  );
 }
