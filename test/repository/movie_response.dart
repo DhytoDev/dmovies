@@ -86,3 +86,127 @@ const movieListResponse = """
   "total_results": 4
 }
 """;
+
+const errorResponse = """
+{
+  "success": false,
+  "status_code": 6,
+  "status_message": "Invalid id: The pre-requisite id is invalid or not found."
+}
+""";
+
+const movieDetailsResponse = """
+{
+  "adult": false,
+  "backdrop_path": "/vsjuHP9RQZJgYUvvSlO3mjJpXkq.jpg",
+  "belongs_to_collection": {
+    "id": 115570,
+    "name": "Star Trek: The Next Generation Collection",
+    "poster_path": "/jYtNUfMbU6DBbmd4LUS19u4hF4p.jpg",
+    "backdrop_path": "/r7MMQenUURHhAVHFymtOb8AX4Bm.jpg"
+  },
+  "budget": 70000000,
+  "genres": [
+    {
+      "id": 878,
+      "name": "Science Fiction"
+    },
+    {
+      "id": 28,
+      "name": "Action"
+    }
+  ],
+  "homepage": "https://www.paramountmovies.com/movies/star-trek-ix-insurrection",
+  "id": 200,
+  "imdb_id": "tt0120844",
+  "original_language": "en",
+  "original_title": "Star Trek: Insurrection",
+  "overview": "abcdefghj",
+  "popularity": 26.633,
+  "poster_path": "/xQCMAHeg5M9HpDIqanYbWdr4brB.jpg",
+  "production_companies": [
+    {
+      "id": 4,
+      "logo_path": "/gz66EfNoYPqHTYI4q9UEN4CbHRc.png",
+      "name": "Paramount",
+      "origin_country": "US"
+    }
+  ],
+  "production_countries": [
+    {
+      "iso_3166_1": "US",
+      "name": "United States of America"
+    }
+  ],
+  "release_date": "1998-12-11",
+  "revenue": 118000000,
+  "runtime": 102,
+  "spoken_languages": [
+    {
+      "english_name": "English",
+      "iso_639_1": "en",
+      "name": "English"
+    }
+  ],
+  "status": "Released",
+  "tagline": "The battle for paradise has begun.",
+  "title": "Star Trek: Insurrection",
+  "video": false,
+  "vote_average": 6.4,
+  "vote_count": 1134
+}
+""";
+
+const movieReviewsResponse = """
+{
+  "id": 200,
+  "page": 1,
+  "results": [
+    {
+      "author": "TheTenth",
+      "author_details": {
+        "name": "",
+        "username": "TheTenth",
+        "avatar_path": null,
+        "rating": 10
+      },
+      "content": "abcdeffgh",
+      "created_at": "2018-04-18T14:11:05.407Z",
+      "id": "5ad751f99251413b2500f0bc",
+      "updated_at": "2021-06-23T15:58:07.750Z",
+      "url": "https://www.themoviedb.org/review/5ad751f99251413b2500f0bc"
+    },
+    {
+      "author": "Wuchak",
+      "author_details": {
+        "name": "",
+        "username": "Wuchak",
+        "avatar_path": "/4KVM1VkqmXLOuwj1jjaSdxbvBDk.jpg",
+        "rating": 6
+      },
+      "content": "abcdeffgh",
+      "created_at": "2018-08-27T01:30:26.028Z",
+      "id": "5b835432c3a3686560031333",
+      "updated_at": "2021-06-23T15:58:11.799Z",
+      "url": "https://www.themoviedb.org/review/5b835432c3a3686560031333"
+    }
+  ],
+  "total_pages": 1,
+  "total_results": 2
+}
+""";
+
+const genreListResponse = """
+{
+  "genres": [
+    {
+      "id": 28,
+      "name": "Action"
+    },
+    {
+      "id": 12,
+      "name": "Adventure"
+    }
+  ]
+}
+""";
