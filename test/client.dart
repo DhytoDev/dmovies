@@ -6,6 +6,20 @@ import 'package:dmovies/src/data/remote/response/movie_list_dto.dart';
 import 'package:dmovies/src/data/remote/response/review_list_dto.dart';
 import 'package:dmovies/src/data/remote/response/video_dto.dart';
 import 'package:http/http.dart' as http;
+import 'package:http/testing.dart';
+
+typedef ApiService<S extends ChopperService> = S Function(ChopperClient client);
+
+S createService<S extends ChopperService>({
+  required http.Response response,
+  required ApiService<S> service,
+}) {
+  final httpClient = MockClient((http.Request request) async => response);
+
+  final chopperClient = buildClient(httpClient);
+
+  return service.call(chopperClient);
+}
 
 ChopperClient buildClient(http.BaseClient httpClient) {
   return ChopperClient(
@@ -20,14 +34,5 @@ ChopperClient buildClient(http.BaseClient httpClient) {
         ReviewListDto: (json) => ReviewListDto.fromJson(json),
       },
     ),
-    interceptors: [
-          (Request req) async {
-        final params = Map<String, dynamic>.from(req.parameters);
-        params['api_key'] = '678ef42a1b584848591cbd02ac3899c3';
-
-        return req.copyWith(parameters: params);
-      },
-      HttpLoggingInterceptor(),
-    ],
   );
 }
