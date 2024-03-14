@@ -52,7 +52,7 @@ class _MovieScreenState extends State<MovieScreen> {
         title: const Text('DMovies'),
       ),
       body: BlocConsumer<MovieBloc, MovieListState>(
-        buildWhen: (p, c) => p.movies.length != c.movies.length,
+        buildWhen: (p, c) => p.page < c.page,
         builder: (context, state) {
           if (state.page == 0) {
             return const Center(child: CircularProgressIndicator());

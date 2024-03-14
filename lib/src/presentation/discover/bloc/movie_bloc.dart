@@ -20,6 +20,7 @@ class MovieBloc extends Bloc<MovieEvent, MovieListState> {
     Emitter<MovieListState> emit,
   ) async {
     if (event.page < 1 || event.page > 500) return;
+    if (event.page <= state.page) return;
 
     final movies = await _movieRepository.fetchMovies(
       page: event.page,
@@ -35,7 +36,7 @@ class MovieBloc extends Bloc<MovieEvent, MovieListState> {
       (r) {
         emit(
           state.copyWith(
-            page: r.page,
+            page: event.page,
             totalPages: r.totalPages,
             movies: List.of(state.movies)..addAll(r.data),
           ),
